@@ -6,155 +6,170 @@
     <title>Panel de Administración</title>
     <style>
         :root {
-            --primary: #4361ee;
-            --primary-light: #e6e9f9;
-            --error: #f72585;
-            --success: #4cc9f0;
-            --text: #2b2d42;
-            --light: #f8f9fa;
-            --white: #ffffff;
-            --gray: #adb5bd;
+          --primary: #e50914;
+          --primary-dark: #b00610;
+          --background: #111111;
+          --card-bg: #1c1c1c;
+          --text: #ffffff;
+          --text-muted: #cccccc;
+          --border: #333333;
+          --error: #ff4d4d;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            background-color: var(--light);
-            color: var(--text);
+          font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+          margin: 0;
+          background-color: var(--background);
+          color: var(--text);
         }
 
         .admin-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
+          max-width: 1200px;
+          margin: 0 auto;
+          padding: 2rem;
         }
 
         .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid var(--gray);
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 2rem;
+          padding-bottom: 1rem;
+          border-bottom: 1px solid var(--border);
         }
 
         .admin-title {
-            color: var(--primary);
-            margin: 0;
+          color: var(--primary);
+          margin: 0;
         }
 
         .user-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
+          display: flex;
+          align-items: center;
+          gap: 1rem;
         }
 
         .logout-btn {
-            background-color: var(--error);
-            color: white;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: 0.9rem;
+          background-color: var(--error);
+          color: white;
+          padding: 0.5rem 1rem;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          text-decoration: none;
+          font-size: 0.9rem;
+          transition: background-color 0.3s ease;
+        }
+
+        .logout-btn:hover {
+          background-color: var(--primary-dark);
         }
 
         .alert {
-            padding: 1rem;
-            margin-bottom: 1.5rem;
-            border-radius: 5px;
+          padding: 1rem;
+          margin-bottom: 1.5rem;
+          border-radius: 5px;
         }
 
         .alert-success {
-            background-color: #d1fae5;
-            color: #065f46;
-            border: 1px solid #a7f3d0;
+          background-color: #1f5130;
+          color: #9cf6c1;
+          border: 1px solid #2ecc71;
         }
 
         .alert-error {
-            background-color: #fee2e2;
-            color: #b91c1c;
-            border: 1px solid #fecaca;
+          background-color: #4b1c1c;
+          color: #f88;
+          border: 1px solid #e74c3c;
         }
 
         .action-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 1.5rem;
         }
 
         .btn {
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            text-decoration: none;
-            font-size: 0.9rem;
-            cursor: pointer;
+          padding: 0.6rem 1.2rem;
+          border-radius: 6px;
+          text-decoration: none;
+          font-size: 1rem;
+          cursor: pointer;
+          font-weight: bold;
+          transition: background-color 0.3s ease;
         }
 
         .btn-primary {
-            background-color: var(--primary);
-            color: white;
-            border: none;
+          background-color: var(--primary);
+          color: white;
+          border: none;
+        }
+
+        .btn-primary:hover {
+          background-color: var(--primary-dark);
         }
 
         .users-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+          width: 100%;
+          border-collapse: collapse;
+          background-color: var(--card-bg);
+          box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+          border: 1px solid var(--border);
         }
 
         .users-table th, .users-table td {
-            padding: 1rem;
-            text-align: left;
-            border-bottom: 1px solid var(--light);
+          padding: 1rem;
+          text-align: left;
+          border-bottom: 1px solid var(--border);
         }
 
         .users-table th {
-            background-color: var(--primary-light);
-            color: var(--primary);
-            font-weight: 500;
+          background-color: var(--primary-dark);
+          color: var(--text);
         }
 
         .users-table tr:hover {
-            background-color: rgba(67, 97, 238, 0.05);
+          background-color: #222;
         }
 
         .badge {
-            padding: 0.25rem 0.5rem;
-            border-radius: 50px;
-            font-size: 0.75rem;
-            font-weight: 500;
+          padding: 0.3rem 0.7rem;
+          border-radius: 50px;
+          font-size: 0.8rem;
+          font-weight: bold;
         }
 
         .badge-admin {
-            background-color: var(--primary-light);
-            color: var(--primary);
+          background-color: var(--primary);
+          color: white;
         }
 
         .badge-user {
-            background-color: #e9ecef;
-            color: var(--text);
+          background-color: #555;
+          color: var(--text);
         }
 
         .action-btn {
-            padding: 0.3rem 0.6rem;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 0.8rem;
+          padding: 0.3rem 0.6rem;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+          font-size: 0.8rem;
         }
 
         .delete-btn {
-            background-color: var(--error);
-            color: white;
+          background-color: var(--error);
+          color: white;
+        }
+
+        .delete-btn:hover {
+          background-color: #cc0000;
         }
 
         .empty-state {
-            text-align: center;
-            padding: 2rem;
-            color: var(--gray);
+          text-align: center;
+          padding: 2rem;
+          color: var(--text-muted);
         }
     </style>
 </head>
@@ -177,7 +192,7 @@
         </#if>
 
         <div class="action-buttons">
-            <a href="/admin/nuevo-usuario" class="btn">Nuevo Usuario</a>
+          <a href="/admin/nuevo-usuario" class="btn btn-primary">➕ Nuevo Usuario</a>
         </div>
 
         <table class="users-table">

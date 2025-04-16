@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CinePlus - Tu plataforma de cine</title>
     <style>
-        /* Estilos generales */
         body {
             margin: 0;
             padding: 0;
@@ -15,7 +14,6 @@
             background-color: #f5f5f5;
         }
 
-        /* Navbar fijo */
         .navbar {
             position: fixed;
             top: 0;
@@ -104,15 +102,14 @@
             cursor: pointer;
         }
 
-        /* Contenido principal */
         .main-content {
-            margin-top: 80px; /* Para compensar el navbar fijo */
+            margin-top: 80px;
             padding: 40px 20px;
         }
 
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-                        url('https://via.placeholder.com/1920x1080') center/cover no-repeat;
+                        center/cover no-repeat;
             color: white;
             padding: 150px 20px;
             text-align: center;
@@ -217,7 +214,7 @@
             max-width: 1400px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
             padding: 0 30px;
         }
@@ -255,6 +252,43 @@
             color: #999;
             font-size: 14px;
         }
+
+        /* Estilos para el dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            background-color: #0f0f1a;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+            border-radius: 4px;
+            padding: 10px 0;
+        }
+
+        .dropdown-menu li {
+            padding: 8px 16px;
+        }
+
+        .dropdown-menu a {
+            color: white !important;
+            display: block;
+            transition: all 0.3s;
+        }
+
+        .dropdown-menu a:hover {
+            color: #e50914 !important;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -268,7 +302,15 @@
                 <li><a href="#">Socio</a></li>
                 <li><a href="#">Ranking</a></li>
                 <li><a href="#">Blog</a></li>
-                <li><a href="/perfil">Usuario</a></li>
+                <li class="dropdown">
+                    <a href="/profile" class="dropdown-toggle">Usuario</a>
+                    <#if usuario?? && usuario.isAdmin()>
+                        <ul class="dropdown-menu">
+                            <li><a href="/profile">Mi perfil</a></li>
+                            <li><a href="/dashboard">Panel de administración</a></li>
+                        </ul>
+                    </#if>
+                </li>
                 <li>
                     <div class="search-box">
                         <input type="text" placeholder="Buscar películas...">
@@ -279,24 +321,21 @@
         </div>
     </nav>
 
-    <!-- Contenido principal -->
     <div class="main-content">
-        <!-- Hero Banner -->
         <section class="hero">
             <h1>Descubre el mundo del cine</h1>
-            <p>Encuentra las mejores películas, consulta horarios en tus cines favoritos y mantente al día con las últimas novedades.</p>
+            <p>Encuentra las mejores películas, consulta tus generos favoritos y mantente al día con las últimas novedades.</p>
             <a href="#" class="btn">Ver estrenos</a>
         </section>
 
         <!-- Sección de películas destacadas -->
         <section class="movie-section">
-            <h2 class="section-title">Películas en cartelera</h2>
+            <h2 class="section-title">Películas recién añadidas</h2>
             <div class="movie-grid">
                 <!-- Película 1 -->
                 <div class="movie-card">
-                    <img src="https://via.placeholder.com/300x450" alt="Película 1" class="movie-poster">
                     <div class="movie-info">
-                        <div class="movie-title">El último desafío</div>
+                        <div class="movie-title">Inventado</div>
                         <div class="movie-meta">
                             <span>Acción</span>
                             <span>★ 4.5</span>
@@ -306,9 +345,8 @@
 
                 <!-- Película 2 -->
                 <div class="movie-card">
-                    <img src="https://via.placeholder.com/300x450" alt="Película 2" class="movie-poster">
                     <div class="movie-info">
-                        <div class="movie-title">Amor en París</div>
+                        <div class="movie-title">Inventado</div>
                         <div class="movie-meta">
                             <span>Romance</span>
                             <span>★ 4.2</span>
@@ -317,25 +355,20 @@
                 </div>
 
                 <!-- Película 3 -->
-<#list peliculas as pelicula>
-    <div class="movie-card">
-        <img src="https://via.placeholder.com/300x450" alt="${pelicula.titulo}" class="movie-poster">
-        <div class="movie-info">
-            <div class="movie-title">${pelicula.titulo}</div>
-            <div class="movie-meta">
-                <span>${pelicula.genero.nombre}</span>
-                <span>★ ${pelicula.promedio_rating?string("0.0")}</span>
-            </div>
-        </div>
-    </div>
-</#list>
-
+                <div class="movie-card">
+                    <div class="movie-info">
+                        <div class="movie-title">Inventado</div>
+                        <div class="movie-meta">
+                            <span>Ciencia ficción</span>
+                            <span>★ 4.7</span>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- Película 4 -->
                 <div class="movie-card">
-                    <img src="https://via.placeholder.com/300x450" alt="Película 4" class="movie-poster">
                     <div class="movie-info">
-                        <div class="movie-title">Risas sin parar</div>
+                        <div class="movie-title">Inventado</div>
                         <div class="movie-meta">
                             <span>Comedia</span>
                             <span>★ 3.9</span>
@@ -345,9 +378,8 @@
 
                 <!-- Película 5 -->
                 <div class="movie-card">
-                    <img src="https://via.placeholder.com/300x450" alt="Película 5" class="movie-poster">
                     <div class="movie-info">
-                        <div class="movie-title">El misterio del faro</div>
+                        <div class="movie-title">Inventado</div>
                         <div class="movie-meta">
                             <span>Suspenso</span>
                             <span>★ 4.1</span>
@@ -363,47 +395,82 @@
             <div class="movie-grid">
                 <!-- Película 1 -->
                 <div class="movie-card">
-                    <img src="https://via.placeholder.com/300x450" alt="Próximo 1" class="movie-poster">
                     <div class="movie-info">
-                        <div class="movie-title">Guardianes del tiempo</div>
+                        <div class="movie-title">Thunderbolts</div>
                         <div class="movie-meta">
-                            <span>Estreno: 15/06</span>
+                            <span>Estreno: 2/05</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Película 2 -->
                 <div class="movie-card">
-                    <img src="https://via.placeholder.com/300x450" alt="Próximo 2" class="movie-poster">
                     <div class="movie-info">
-                        <div class="movie-title">La última aventura</div>
+                        <div class="movie-title">Until dawn</div>
                         <div class="movie-meta">
-                            <span>Estreno: 22/06</span>
+                            <span>Estreno: 25/04</span>
                         </div>
                     </div>
                 </div>
 
                 <!-- Película 3 -->
                 <div class="movie-card">
-                    <img src="https://via.placeholder.com/300x450" alt="Próximo 3" class="movie-poster">
                     <div class="movie-info">
-                        <div class="movie-title">Corazones rebeldes</div>
+                        <div class="movie-title">Zootopia 2</div>
                         <div class="movie-meta">
-                            <span>Estreno: 29/06</span>
+                            <span>Estreno: 26/11</span>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Película 4 -->
-                <div class="movie-card">
-                    <img src="https://via.placeholder.com/300x450" alt="Próximo 4" class="movie-poster">
+        <!-- Sección de generos -->
+        <section class="movie-section">
+            <h2 class="section-title">Te recomendamos ver estas películas</h2>
+            <div class="movie-grid">
+
+                <a href="/accion" class="movie-card">
                     <div class="movie-info">
-                        <div class="movie-title">El enigma del siglo</div>
-                        <div class="movie-meta">
-                            <span>Estreno: 06/07</span>
-                        </div>
+                        <div class="movie-title">🎬 Acción</div>
                     </div>
-                </div>
+                </a>
+
+                <a href="/romance" class="movie-card">
+                    <div class="movie-info">
+                        <div class="movie-title">💕 Romance</div>
+                    </div>
+                </a>
+
+                <a href="/drama" class="movie-card">
+                    <div class="movie-info">
+                        <div class="movie-title">🎭 Drama</div>
+                    </div>
+                </a>
+
+                <a href="/terror" class="movie-card">
+                    <div class="movie-info">
+                        <div class="movie-title">👻 Terror</div>
+                    </div>
+                </a>
+
+                <a href="/cienciaficcion" class="movie-card">
+                    <div class="movie-info">
+                        <div class="movie-title">🚀 Ciencia Ficción</div>
+                    </div>
+                </a>
+
+                <a href="/animacion" class="movie-card">
+                    <div class="movie-info">
+                        <div class="movie-title">🐭 Animación</div>
+                    </div>
+                </a>
+
+                <a href="/aventura" class="movie-card">
+                    <div class="movie-info">
+                        <div class="movie-title">🗺️ Aventura</div>
+                    </div>
+                </a>
             </div>
         </section>
     </div>
@@ -431,16 +498,6 @@
             </div>
 
             <div class="footer-column">
-                <h3>Recursos</h3>
-                <ul>
-                    <li><a href="#">API para desarrolladores</a></li>
-                    <li><a href="#">Mapa del sitio</a></li>
-                    <li><a href="#">Ayuda</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-column">
                 <h3>Síguenos</h3>
                 <ul>
                     <li><a href="#">Facebook</a></li>
@@ -452,38 +509,8 @@
         </div>
 
         <div class="copyright">
-            &copy; 2023 CinePlus. Todos los derechos reservados.
+            &copy; 2025 CinePlus. Todos los derechos reservados.
         </div>
     </footer>
-
-    <script>
-        // Efecto de cambio de navbar al hacer scroll
-        window.addEventListener('scroll', function() {
-            const navbar = document.querySelector('.navbar');
-            if (window.scrollY > 50) {
-                navbar.style.padding = '8px 0';
-                navbar.style.background = 'rgba(15, 15, 26, 0.95)';
-            } else {
-                navbar.style.padding = '12px 0';
-                navbar.style.background = '#0f0f1a';
-            }
-        });
-
-        // Búsqueda interactiva (ejemplo básico)
-        document.querySelector('.search-box button').addEventListener('click', function() {
-            const query = document.querySelector('.search-box input').value;
-            if (query.trim() !== '') {
-                alert('Buscando: ' + query);
-                // Aquí iría la lógica de búsqueda real
-            }
-        });
-
-        // Permitir búsqueda con Enter
-        document.querySelector('.search-box input').addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                document.querySelector('.search-box button').click();
-            }
-        });
-    </script>
 </body>
 </html>

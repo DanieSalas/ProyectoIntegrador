@@ -6,58 +6,78 @@
     <title>${titulo}</title>
     <style>
         :root {
-            --primary: #4361ee;
-            --primary-dark: #3a56d4;
-            --error: #f72585;
-            --text: #2b2d42;
-            --light: #f8f9fa;
-            --white: #ffffff;
+            --primary-color: #e50914;
+            --primary-hover: #b2070f;
+            --dark-bg: #0f0f1a;
+            --light-bg: #f5f5f5;
+            --text-color: #333;
+            --light-text: #ffffff;
+            --error-color: #ff3333;
+            --border-radius: 8px;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
             --gray: #adb5bd;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light);
-            color: var(--text);
+            font-family: 'Arial', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
             line-height: 1.6;
-            padding: 1rem;
         }
 
         .register-container {
             width: 100%;
             max-width: 420px;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
             overflow: hidden;
-            animation: fadeIn 0.5s ease-out;
+            margin: 20px;
+            transition: transform 0.3s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+        .register-container:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .brand-text {
+            text-align: center;
+            padding: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-family: 'Impact', sans-serif;
+            letter-spacing: 1px;
+            background-color: var(--dark-bg);
+            color: var(--light-text);
         }
 
         .register-header {
-            background-color: var(--primary);
-            color: var(--white);
+            background-color: var(--primary-color);
+            color: var(--light-text);
             padding: 1.5rem;
             text-align: center;
         }
 
         .register-header h2 {
             font-size: 1.5rem;
-            margin-bottom: 0.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        .register-header p {
+            opacity: 0.9;
         }
 
         .register-body {
@@ -65,88 +85,100 @@
         }
 
         .error-message {
-            background-color: rgba(247, 37, 133, 0.1);
-            color: var(--error);
-            padding: 0.75rem;
-            border-radius: 8px;
+            background-color: var(--error-color);
+            color: var(--light-text);
+            padding: 0.8rem;
+            border-radius: var(--border-radius);
             margin-bottom: 1.5rem;
-            font-size: 0.9rem;
             text-align: center;
+            font-size: 0.9rem;
         }
 
         .form-group {
-            margin-bottom: 1.25rem;
+            margin-bottom: 1.5rem;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
             font-weight: 500;
-            font-size: 0.9rem;
+            color: var(--text-color);
         }
 
         .form-control {
             width: 100%;
             padding: 0.8rem 1rem;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
             font-size: 1rem;
             transition: all 0.3s;
         }
 
         .form-control:focus {
             outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.2);
         }
 
         .btn {
             width: 100%;
             padding: 0.8rem;
-            background-color: var(--primary);
-            color: var(--white);
+            background-color: var(--primary-color);
+            color: var(--light-text);
             border: none;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
 
         .btn:hover {
-            background-color: var(--primary-dark);
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
         }
 
         .login-link {
             text-align: center;
             margin-top: 1.5rem;
-            color: var(--gray);
-            font-size: 0.9rem;
+            color: #666;
         }
 
         .login-link a {
-            color: var(--primary);
+            color: var(--primary-color);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: bold;
         }
 
         .login-link a:hover {
             text-decoration: underline;
         }
 
-        /* Efectos para inputs */
-        input {
-            background-color: var(--light);
-        }
-
         input::placeholder {
             color: var(--gray);
             opacity: 0.7;
+        }
+
+        @media (max-width: 480px) {
+            .register-container {
+                margin: 1rem;
+            }
+
+            .register-header h2 {
+                font-size: 1.3rem;
+            }
+
+            .brand-text {
+                font-size: 1.8rem;
+                padding: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="register-container">
+        <div class="brand-text">CinePlus</div>
+
         <div class="register-header">
             <h2>Crear Cuenta</h2>
             <p>Completa el formulario para registrarte</p>
@@ -190,7 +222,7 @@
                         name="password"
                         class="form-control"
                         required
-                        placeholder="Mínimo 8 caracteres"
+                        placeholder="12345"
                     >
                 </div>
 
