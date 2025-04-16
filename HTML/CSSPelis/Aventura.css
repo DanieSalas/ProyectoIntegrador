@@ -36,9 +36,8 @@ body {
     text-align: center;
 }
 
-.genero-hero.animacion {
-    background-color: #ff9800;
-}
+.genero-hero.aventura { background-color: #00695c; }
+
 
 .genero-hero h1 {
     font-size: 2.5em;

@@ -47,13 +47,12 @@ body {
 
 /* Colores personalizados por género */
 .genero-hero.accion { background-color: #8b0000; }
-.genero-hero.comedia { background-color: #f4b400; }
-.genero-hero.drama { background-color: #444; }
-.genero-hero.terror { background-color: #2a0000; }
-.genero-hero.romance { background-color: #c2185b; }
-.genero-hero.sci-fi { background-color: #1a237e; }
-.genero-hero.animacion { background-color: #ff9800; }
-.genero-hero.aventura { background-color: #00695c; }
+
+
+
+
+
+
 
 .peliculas-grid {
     display: grid;
