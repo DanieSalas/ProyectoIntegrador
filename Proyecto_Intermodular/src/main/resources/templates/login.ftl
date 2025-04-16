@@ -6,12 +6,15 @@
     <title>${titulo}</title>
     <style>
         :root {
-            --primary-color: #4361ee;
-            --secondary-color: #3f37c9;
-            --error-color: #f72585;
-            --text-color: #2b2d42;
-            --light-gray: #f8f9fa;
-            --white: #ffffff;
+            --primary-color: #e50914;
+            --primary-hover: #b2070f;
+            --dark-bg: #0f0f1a;
+            --light-bg: #f5f5f5;
+            --text-color: #333;
+            --light-text: #ffffff;
+            --error-color: #ff3333;
+            --border-radius: 8px;
+            --box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -21,8 +24,8 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--light-gray);
+            font-family: 'Arial', sans-serif;
+            background-color: var(--light-bg);
             color: var(--text-color);
             display: flex;
             justify-content: center;
@@ -35,14 +38,16 @@
             width: 100%;
             max-width: 420px;
             padding: 2.5rem;
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
             transition: transform 0.3s ease;
+            margin: 20px;
         }
 
         .login-container:hover {
             transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
         }
 
         .login-header {
@@ -54,10 +59,11 @@
             font-size: 1.8rem;
             color: var(--primary-color);
             margin-bottom: 0.5rem;
+            font-weight: bold;
         }
 
         .login-header p {
-            color: #6c757d;
+            color: #666;
         }
 
         .login-form .form-group {
@@ -74,16 +80,16 @@
         .login-form input {
             width: 100%;
             padding: 0.8rem 1rem;
-            border: 1px solid #ced4da;
-            border-radius: 8px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
             font-size: 1rem;
-            transition: border-color 0.3s;
+            transition: all 0.3s;
         }
 
         .login-form input:focus {
             outline: none;
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+            box-shadow: 0 0 0 3px rgba(229, 9, 20, 0.2);
         }
 
         .btn {
@@ -91,24 +97,25 @@
             width: 100%;
             padding: 0.8rem;
             background-color: var(--primary-color);
-            color: white;
+            color: var(--light-text);
             border: none;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             font-size: 1rem;
-            font-weight: 500;
+            font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
 
         .btn:hover {
-            background-color: var(--secondary-color);
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
         }
 
         .error-message {
-            color: var(--error-color);
-            background-color: rgba(247, 37, 133, 0.1);
+            color: var(--light-text);
+            background-color: var(--error-color);
             padding: 0.8rem;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             margin-bottom: 1.5rem;
             text-align: center;
             font-size: 0.9rem;
@@ -117,29 +124,46 @@
         .register-link {
             text-align: center;
             margin-top: 1.5rem;
-            color: #6c757d;
+            color: #666;
         }
 
         .register-link a {
             color: var(--primary-color);
             text-decoration: none;
-            font-weight: 500;
+            font-weight: bold;
         }
 
         .register-link a:hover {
             text-decoration: underline;
         }
 
+        /* Estilo similar al navbar para cohesión */
+        .brand-text {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-family: 'Impact', sans-serif;
+            letter-spacing: 1px;
+        }
+
         @media (max-width: 480px) {
             .login-container {
                 padding: 1.5rem;
-                margin: 0 1rem;
+                margin: 1rem;
+            }
+
+            .login-header h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="login-container">
+        <div class="brand-text">CinePlus</div>
+
         <div class="login-header">
             <h2>Iniciar Sesión</h2>
             <p>Ingresa tus credenciales para continuar</p>

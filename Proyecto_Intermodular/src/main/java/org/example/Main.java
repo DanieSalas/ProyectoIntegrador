@@ -12,8 +12,16 @@ public class Main {
         freemarkerConfig.setClassForTemplateLoading(Main.class, "/templates");
 
         Javalin app = Javalin.create(config -> {
+            config.staticFiles.add(staticFileConfig -> {
+                staticFileConfig.hostedPath = "/";
+                staticFileConfig.directory = "public";
+                staticFileConfig.precompress = false;
+                staticFileConfig.aliasCheck = null;
+            });
             config.fileRenderer(new JavalinFreemarker(freemarkerConfig));
         }).start(8080);
+
+        // Inicio
 
         app.get("/", ctx -> {
             Map<String, Object> model = new HashMap<>();
@@ -29,22 +37,27 @@ public class Main {
 
             if (usuario != null) {
                 ctx.sessionAttribute("user", usuario);
-                if (usuario.isAdmin()) {
-                    Map<String, Object> adminModel = new HashMap<>();
-                    adminModel.put("usuario", usuario);
-                    adminModel.put("usuarios", UsuarioDAO.listarTodos());
-                    ctx.render("dashboard.ftl", adminModel);
-                }
-                else {
-                    Map<String, Object> userModel = new HashMap<>();
-                    userModel.put("usuario", usuario);
-                    ctx.render("profile.ftl", userModel);
-                }
+                ctx.redirect("/principal");
             } else {
                 Map<String, Object> model = new HashMap<>();
                 model.put("error", "Credenciales incorrectas");
                 ctx.render("login.ftl", model);
             }
+        });
+
+        app.get("/principal", ctx -> {
+            Usuario usuario = ctx.sessionAttribute("user");
+            if (usuario == null) {
+                ctx.redirect("/?error=Debe+iniciar+sesion");
+                return;
+            }
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("usuario", usuario);
+            if (usuario.isAdmin()) {
+                model.put("usuarios", UsuarioDAO.listarTodos());
+            }
+            ctx.render("principal.ftl", model);
         });
 
         app.get("/register", ctx -> {
@@ -70,7 +83,7 @@ public class Main {
             }
         });
 
-        app.get("/mi-perfil", ctx -> {
+        app.get("/profile", ctx -> {
             Usuario usuario = ctx.sessionAttribute("user");
             if (usuario == null) {
                 ctx.redirect("/?error=Debe+iniciar+sesion");
@@ -79,6 +92,17 @@ public class Main {
             Map<String, Object> model = new HashMap<>();
             model.put("usuario", usuario);
             ctx.render("profile.ftl", model);
+        });
+
+        app.get("/admin-dashboard", ctx -> {
+            Usuario usuario = ctx.sessionAttribute("user");
+            if (usuario == null) {
+                ctx.redirect("/?error=Debe+iniciar+sesion");
+                return;
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("usuario", usuario);
+            ctx.render("dashboard.ftl", model);
         });
 
         app.get("/dashboard", ctx -> {
@@ -105,7 +129,6 @@ public class Main {
             ctx.redirect("/");
         });
 
-
         // Mostrar formulario de creación de usuario para el admin
         app.get("/admin/nuevo-usuario", ctx -> {
             Usuario admin = ctx.sessionAttribute("user");
@@ -116,7 +139,7 @@ public class Main {
 
             Map<String, Object> model = new HashMap<>();
             model.put("usuario", admin);
-            model.put("titulo", "Nuevo Usuario"); // puedes reutilizar el mismo formulario con cambio de título
+            model.put("titulo", "Nuevo Usuario");
             ctx.render("admin_register.ftl", model);
         });
 
@@ -133,7 +156,6 @@ public class Main {
                 nuevo.setUsername(ctx.formParam("username"));
                 nuevo.setEmail(ctx.formParam("email"));
                 nuevo.setPassword(ctx.formParam("password"));
-                nuevo.setAdmin("on".equals(ctx.formParam("admin"))); // checkbox para marcar si será admin
 
                 UsuarioDAO.guardarUsuario(nuevo);
                 ctx.redirect("/dashboard?success=Usuario+creado+correctamente");
@@ -144,6 +166,94 @@ public class Main {
                 model.put("titulo", "Nuevo Usuario");
                 ctx.render("admin_register.ftl", model);
             }
+        });
+
+        app.get("/accion", ctx -> {
+            Usuario usuario = ctx.sessionAttribute("user");
+            if (usuario == null) {
+                ctx.redirect("/?error=Debe+iniciar+sesion");
+                return;
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("usuario", usuario);
+            ctx.render("accion.ftl", model);
+        });
+
+        app.get("/drama", ctx -> {
+            Usuario usuario = ctx.sessionAttribute("user");
+            if (usuario == null) {
+                ctx.redirect("/?error=Debe+iniciar+sesion");
+                return;
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("usuario", usuario);
+            ctx.render("drama.ftl", model);
+        });
+
+        app.get("/terror", ctx -> {
+            Usuario usuario = ctx.sessionAttribute("user");
+            if (usuario == null) {
+                ctx.redirect("/?error=Debe+iniciar+sesion");
+                return;
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("usuario", usuario);
+            ctx.render("terror.ftl", model);
+        });
+
+        app.get("/romance", ctx -> {
+            Usuario usuario = ctx.sessionAttribute("user");
+            if (usuario == null) {
+                ctx.redirect("/?error=Debe+iniciar+sesion");
+                return;
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("usuario", usuario);
+            ctx.render("romance.ftl", model);
+        });
+
+        app.get("/cienciaficcion", ctx -> {
+            Usuario usuario = ctx.sessionAttribute("user");
+            if (usuario == null) {
+                ctx.redirect("/?error=Debe+iniciar+sesion");
+                return;
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("usuario", usuario);
+            ctx.render("cienciaficcion.ftl", model);
+        });
+
+        app.get("/animacion", ctx -> {
+            Usuario usuario = ctx.sessionAttribute("user");
+            if (usuario == null) {
+                ctx.redirect("/?error=Debe+iniciar+sesion");
+                return;
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("usuario", usuario);
+            ctx.render("animacion.ftl", model);
+        });
+
+        app.get("/aventura", ctx -> {
+            Usuario usuario = ctx.sessionAttribute("user");
+            if (usuario == null) {
+                ctx.redirect("/?error=Debe+iniciar+sesion");
+                return;
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("usuario", usuario);
+            ctx.render("aventura.ftl", model);
+        });
+
+        app.get("/princip", ctx -> {
+            Usuario usuario = ctx.sessionAttribute("user");
+            if (usuario == null) {
+                ctx.redirect("/?error=Debe+iniciar+sesion");
+                return;
+            }
+            Map<String, Object> model = new HashMap<>();
+            model.put("usuario", usuario);
+            ctx.render("principal.ftl", model);
         });
     }
 }

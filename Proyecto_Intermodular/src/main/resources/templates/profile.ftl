@@ -6,14 +6,14 @@
     <title>Mi Perfil</title>
     <style>
         :root {
-            --primary: #4361ee;
-            --primary-dark: #3a56d4;
-            --error: #f72585;
-            --text: #2b2d42;
-            --light: #f8f9fa;
+            --primary: #e50914;
+            --primary-dark: #b2070f;
+            --error: #ff3333;
+            --text: #ffffff;
+            --light: #0f0f1a;
             --white: #ffffff;
             --gray: #adb5bd;
-            --border: #e9ecef;
+            --border: #2c2f40;
         }
 
         * {
@@ -33,9 +33,9 @@
         .profile-container {
             max-width: 800px;
             margin: 2rem auto;
-            background: var(--white);
+            background: #1c1c2e;
             border-radius: 12px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             overflow: hidden;
         }
 
@@ -50,7 +50,7 @@
         .profile-avatar {
             width: 100px;
             height: 100px;
-            background-color: var(--white);
+            background-color: var(--light);
             border-radius: 50%;
             margin: 0 auto 1rem;
             display: flex;
@@ -60,7 +60,7 @@
             color: var(--primary);
             font-weight: bold;
             border: 3px solid var(--white);
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
         }
 
         .profile-name {
@@ -81,11 +81,11 @@
         }
 
         .profile-card {
-            background: var(--white);
+            background: #222233;
             border: 1px solid var(--border);
             border-radius: 8px;
             padding: 1.5rem;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
         }
 
         .profile-card h3 {
@@ -113,7 +113,7 @@
 
         .logout-btn {
             display: inline-block;
-            background-color: var(--error);
+            background-color: var(--primary);
             color: var(--white);
             padding: 0.6rem 1.5rem;
             border-radius: 6px;
@@ -126,7 +126,7 @@
         }
 
         .logout-btn:hover {
-            background-color: #e01a6f;
+            background-color: var(--primary-dark);
             transform: translateY(-2px);
         }
 
